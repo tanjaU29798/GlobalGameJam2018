@@ -69,7 +69,9 @@ public class Player : MonoBehaviour {
             //Vector2 movement = new Vector2 (0.0f, jumpM);
             //rb.AddForce (movement, ForceMode2D.Impulse);
             rb.AddForce(Vector2.up * jumpM);
+            return;
 		}
+        
 	}
 
 	//Erste Kollision
