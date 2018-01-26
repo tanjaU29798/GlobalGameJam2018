@@ -14,8 +14,6 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Update () {
-        print("hi");
-        print("hi zurueck");
 		playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
 		if (rb.position.x < playerPosition.x) {
 			move (speed);

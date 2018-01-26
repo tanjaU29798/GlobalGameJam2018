@@ -58,21 +58,14 @@ public class Player : MonoBehaviour {
         if (moveHorizontal < 0.0f && facingRight) FlipPlayer();
         else if (moveHorizontal > 0.0f && !facingRight) FlipPlayer();
 
-        //Move
-		Vector2 movement = new Vector2 (moveHorizontal * speed, 0.0f);
-		rb.velocity = movement * Time.deltaTime;
+        //Move;
+		rb.velocity = new Vector2(moveHorizontal * speed * Time.deltaTime, rb.velocity.y);
 	}
 
 	//Einfacher Sprung
 	void Jump(){
 		if (Input.GetButtonDown ("Jump") && jumpB == true) {
-            //Vector2 movement = new Vector2 (0.0f, jumpM);
-            float mv = Input.GetAxis("Horizontal");
-            Vector2 movement = new Vector2(mv, jumpM);
-            rb.AddForce(movement * speed);
-            //rb.AddForce (movement, ForceMode2D.Impulse);
-            //rb.AddForce(Vector2.up * jumpM);
-            return;
+            rb.velocity = new Vector2(rb.velocity.x, jumpM);
 		}
         
 	}
