@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb; //Rigidbody des Spielers
 	private float moveHorizontal; //Bewegung Horizontal
 	private bool jumpB = false; //Ist ein Sprung moeglich?
+    public bool facingRight = true; //
 	private bool vulnerable = true; //Ist der Spieler verletzbar?
 	[SerializeField] private float invulnerableTime = 0.5f; //Zeit in der der Spieler unverwundbar ist 
 
@@ -28,8 +29,9 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (lives > 0) {
-			move ();
-			jump ();
+			Move ();
+			Jump ();
+            Fall();
 			if (won) {
 				print ("Won");
 				restartTimer += Time.deltaTime;
@@ -48,17 +50,25 @@ public class Player : MonoBehaviour {
 	}
 
 	// Bewegung
-	void move(){
+	void Move(){
+        //Input
 		moveHorizontal = Input.GetAxis ("Horizontal");
+
+        //Player Direction
+        if (moveHorizontal < 0.0f && facingRight) FlipPlayer();
+        else if (moveHorizontal > 0.0f && !facingRight) FlipPlayer();
+
+        //Move
 		Vector2 movement = new Vector2 (moveHorizontal * speed, 0.0f);
 		rb.velocity = movement * Time.deltaTime;
 	}
 
 	//Einfacher Sprung
-	void jump(){
+	void Jump(){
 		if (Input.GetButtonDown ("Jump") && jumpB == true) {
-			Vector2 movement = new Vector2 (0.0f, jumpM);
-			rb.AddForce (movement, ForceMode2D.Impulse);
+            //Vector2 movement = new Vector2 (0.0f, jumpM);
+            //rb.AddForce (movement, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpM);
 		}
 	}
 
@@ -91,5 +101,21 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSecondsRealtime (invulnerableTime);
 		vulnerable = true;
 	}
+
+    private void FlipPlayer()
+    {
+        facingRight = !facingRight;
+        Vector2 localScale = gameObject.transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+    }
+
+    private void Fall()
+    {
+        if (gameObject.transform.position.y < -2)
+        {
+            lives = 0;
+        }
+    }
 
 }
