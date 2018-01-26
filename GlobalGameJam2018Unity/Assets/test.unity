@@ -386,10 +386,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1082756803}
-  - component: {fileID: 1082756800}
   - component: {fileID: 1082756799}
   - component: {fileID: 1082756798}
   - component: {fileID: 1082756801}
+  - component: {fileID: 1082756800}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
-  jumpM: 8000
+  jumpM: 100
   facingRight: 1
   invulnerableTime: 0.5
   lives: 3
@@ -453,12 +453,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!212 &1082756801
 SpriteRenderer:
   m_ObjectHideFlags: 0
