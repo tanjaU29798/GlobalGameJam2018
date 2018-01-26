@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraSystem : MonoBehaviour {
 
     private GameObject player;
-    public float xMin, xMax;
+    public float yMin, yMax;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class CameraSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float x = Mathf.Clamp(player.transform.position.x, xMin, xMax);
-        gameObject.transform.position = new Vector3(x, 5, gameObject.transform.position.z);
+        float y = Mathf.Clamp(player.transform.position.y, yMin, yMax);
+        gameObject.transform.position = new Vector3(0, y+2, gameObject.transform.position.z);
 	}
 }
