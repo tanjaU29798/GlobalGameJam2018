@@ -19,8 +19,8 @@ public class Gearwheel : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameObject.GetComponent<Renderer>().enabled = active;
-        gameObject.GetComponent<Collider2D>().enabled = active;
+        childrenActivation();
+        Activation();
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class Gearwheel : MonoBehaviour
         if(activeable && Input.inputString == vl)
         {
             active = !active;
-            gameObject.GetComponent<Renderer>().enabled = active;
-            gameObject.GetComponent<Collider2D>().enabled = active;
+            childrenActivation();
+            Activation();
         }
         //changen effect if button is clicke
         if (Input.inputString == vl)
@@ -53,6 +53,18 @@ public class Gearwheel : MonoBehaviour
                 transform.Rotate(Vector3.forward * 0.5f);
             }
         }
+    }
+
+    private void Activation()
+    {
+        gameObject.GetComponent<Renderer>().enabled = active;
+        gameObject.GetComponent<Collider2D>().enabled = active;
+    }
+
+    private void childrenActivation()
+    {
+        foreach (Transform child in transform)
+            child.GetComponent<Renderer>().enabled = active;
     }
 
     public void Flip()
