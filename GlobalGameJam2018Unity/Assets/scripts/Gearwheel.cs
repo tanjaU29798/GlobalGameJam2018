@@ -9,6 +9,8 @@ public class Gearwheel : MonoBehaviour
     private bool cw = true;
     [SerializeField]
     private bool move = false;
+    [SerializeField]
+    private string vl = "";
 
     // Use this for initialization
     void Start()
@@ -19,6 +21,14 @@ public class Gearwheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //changen effect if button is clicke
+        if (Input.inputString == vl)
+        {
+            if (vl == "4" || vl == "6" || vl == "8")
+            {
+                move = !move;
+            }
+        }
         if (move)
         {
             if (cw)
