@@ -6,6 +6,8 @@ public class Gearwheel : MonoBehaviour
 {
 
     [SerializeField]
+    private float speed = 0.5f;
+    [SerializeField]
     private bool cw = true;
     [SerializeField]
     private bool move = false;
@@ -15,6 +17,7 @@ public class Gearwheel : MonoBehaviour
     private bool activeable = false;
     [SerializeField]
     private bool active = false;
+
 
     // Use this for initialization
     void Start()
@@ -45,12 +48,12 @@ public class Gearwheel : MonoBehaviour
             if (cw)
             {
                 //rotate clockwise
-                transform.Rotate(Vector3.back * 0.5f);
+                transform.Rotate(Vector3.back * speed);
             }
             else
             {
                 //rotate counterclockwise
-                transform.Rotate(Vector3.forward * 0.5f);
+                transform.Rotate(Vector3.forward * speed);
             }
         }
     }
