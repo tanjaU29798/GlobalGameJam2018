@@ -74,7 +74,12 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = true;
-		}
+        }
+        if (coll.gameObject.tag == "DeathZone")
+        {
+            Pause();
+            lives = 0;
+        }
 		//Wenn der Gegner berührt wird, dann verliert ein Leben
 		if (coll.gameObject.tag == "Enemy" && vulnerable) {
 			lives--;
@@ -106,6 +111,14 @@ public class Player : MonoBehaviour {
         Vector2 localScale = gameObject.transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+    }
+
+    // Spiel stoppt/friert 3sek ein
+    private IEnumerator Pause()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(3);
+        Time.timeScale = 1;
     }
 
     private void Fall()
