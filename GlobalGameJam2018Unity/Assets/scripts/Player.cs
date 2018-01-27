@@ -75,15 +75,12 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = true;
-<<<<<<< HEAD
+        //HEAD
         }
         if (coll.gameObject.tag == "DeathZone")
         {
             Pause();
             lives = 0;
-=======
-            grounded = true;
->>>>>>> 5db8d8c1a4a43ca606422574b4903e5ee0dffe11
         }
 		//Wenn der Gegner berührt wird, dann verliert ein Leben
 		if (coll.gameObject.tag == "Enemy" && vulnerable) {

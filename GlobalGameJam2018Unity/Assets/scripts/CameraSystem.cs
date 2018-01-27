@@ -7,7 +7,7 @@ public class CameraSystem : MonoBehaviour {
     private GameObject player;
     public float yMin, yMax;
 
-	// Use this for initialization
+	// Use this for initializationn
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
 	}
