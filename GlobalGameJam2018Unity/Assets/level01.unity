@@ -456,9 +456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a509b3d5b8b4304b99b6b92a555322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cw: 0
+  cw: 1
   move: 0
   vl: 6
+  activeable: 1
+  active: 0
 --- !u!212 &327306113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -852,9 +854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a509b3d5b8b4304b99b6b92a555322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cw: 1
+  cw: 0
   move: 0
   vl: 6
+  activeable: 0
+  active: 1
 --- !u!212 &1839687920
 SpriteRenderer:
   m_ObjectHideFlags: 0
