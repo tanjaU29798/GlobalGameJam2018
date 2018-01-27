@@ -3685,6 +3685,7 @@ GameObject:
   - component: {fileID: 332841845}
   - component: {fileID: 332841843}
   - component: {fileID: 332841847}
+  - component: {fileID: 332841844}
   m_Layer: 0
   m_Name: TestGearwheelCollider
   m_TagString: Ground
@@ -3809,6 +3810,19 @@ PolygonCollider2D:
       - {x: 1.1999999, y: -3.47}
       - {x: 1.62, y: -3.26}
       - {x: 1.64, y: -3.23}
+--- !u!114 &332841844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332841842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a509b3d5b8b4304b99b6b92a555322e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cw: 1
+  move: 0
 --- !u!212 &332841845
 SpriteRenderer:
   m_ObjectHideFlags: 0
