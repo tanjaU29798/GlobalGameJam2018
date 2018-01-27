@@ -11,16 +11,27 @@ public class Gearwheel : MonoBehaviour
     private bool move = false;
     [SerializeField]
     private string vl = "";
+    [SerializeField]
+    private bool activeable = false;
+    [SerializeField]
+    private bool active = false;
 
     // Use this for initialization
     void Start()
     {
-
+        gameObject.GetComponent<Renderer>().enabled = active;
+        gameObject.GetComponent<Collider2D>().enabled = active;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(activeable && Input.inputString == vl)
+        {
+            active = !active;
+            gameObject.GetComponent<Renderer>().enabled = active;
+            gameObject.GetComponent<Collider2D>().enabled = active;
+        }
         //changen effect if button is clicke
         if (Input.inputString == vl)
         {
