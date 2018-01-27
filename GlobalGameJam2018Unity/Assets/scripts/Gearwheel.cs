@@ -12,7 +12,7 @@ public class Gearwheel : MonoBehaviour
     [SerializeField]
     private bool move = false;
     [SerializeField]
-    private string vl = "";
+    public string vl = "";
     [SerializeField]
     private bool activeable = false;
     [SerializeField]
@@ -29,11 +29,11 @@ public class Gearwheel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(activeable && Input.inputString == vl)
+       /* if(activeable && Input.inputString == vl)
         {
-            active = !active;
-            childrenActivation();
-            Activation();
+           // active = !active;
+           // childrenActivation();
+           // Activation();
         }
         //changen effect if button is clicke
         if (Input.inputString == vl)
@@ -42,7 +42,7 @@ public class Gearwheel : MonoBehaviour
             {
                 move = !move;
             }
-        }
+        }*/
         if (move)
         {
             if (cw)
@@ -58,13 +58,13 @@ public class Gearwheel : MonoBehaviour
         }
     }
 
-    private void Activation()
+    public void Activation()
     {
         gameObject.GetComponent<Renderer>().enabled = active;
         gameObject.GetComponent<Collider2D>().enabled = active;
     }
 
-    private void childrenActivation()
+    public void childrenActivation()
     {
         foreach (Transform child in transform)
             child.GetComponent<Renderer>().enabled = active;
@@ -74,4 +74,35 @@ public class Gearwheel : MonoBehaviour
     {
         cw = !cw;
     }
+
+    public string GetVL()
+    {
+        return vl;
+    }
+
+    public bool GetActive()
+    {
+        return active;
+    }
+
+    public bool GetActiveable()
+    {
+        return activeable;
+    }
+
+    public void SetActive(bool sa)
+    {
+        active = sa;
+    }
+
+    public void SetMove(bool m)
+    {
+        move = m;
+    }
+
+    public bool GetMove()
+    {
+        return move;
+    }
+
 }

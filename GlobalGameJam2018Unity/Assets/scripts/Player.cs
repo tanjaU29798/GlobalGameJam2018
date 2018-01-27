@@ -21,7 +21,6 @@ public class Player : MonoBehaviour {
 
 	private bool won=false; //Ziel erreicht
 
-    int jumpHash = Animator.StringToHash("jump");
     Animator anim;
 
 	// Use this for initialization
