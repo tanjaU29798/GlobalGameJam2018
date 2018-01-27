@@ -17,4 +17,9 @@ public class CameraSystem : MonoBehaviour {
         float y = Mathf.Clamp(player.transform.position.y, yMin, yMax);
         gameObject.transform.position = new Vector3(0, y+2, gameObject.transform.position.z);
 	}
+
+    private Flip()
+    {
+
+    }
 }

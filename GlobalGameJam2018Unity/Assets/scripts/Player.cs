@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
 	private float moveHorizontal; //Bewegung Horizontal
 	private bool jumpB = false; //Ist ein Sprung moeglich?
     public bool facingRight = true; //
-    private bool grounded = false;
 	private bool vulnerable = true; //Ist der Spieler verletzbar?
 	[SerializeField] private float invulnerableTime = 0.5f; //Zeit in der der Spieler unverwundbar ist 
 
@@ -75,7 +74,6 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = true;
-            grounded = true;
         }
 		//Wenn der Gegner berührt wird, dann verliert ein Leben
 		if (coll.gameObject.tag == "Enemy" && vulnerable) {
@@ -89,33 +87,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-    void FixedUpdate()
-    {
-        if (grounded)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, 0);
-
-            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
-            {
-                Rigidbody2D body = GetComponent<Rigidbody2D>();
-                // Apply the opposite force against the slope force 
-                // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * 0.6f), body.velocity.y);
-
-                //Move Player up or down to compensate for the slope below them
-                Vector3 pos = transform.position;
-                pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
-                transform.position = pos;
-            }
-        }
-    }
-
     // Wenn Kollision verlassen wird
     void OnCollisionExit2D(Collision2D coll){
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = false;
-            grounded = false;
-
         }
 	}
 
