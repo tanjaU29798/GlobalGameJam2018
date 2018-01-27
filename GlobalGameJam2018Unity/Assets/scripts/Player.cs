@@ -21,9 +21,13 @@ public class Player : MonoBehaviour {
 
 	private bool won=false; //Ziel erreicht
 
+    int jumpHash = Animator.StringToHash("jump");
+    Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -53,6 +57,8 @@ public class Player : MonoBehaviour {
 	void Move(){
         //Input
 		moveHorizontal = Input.GetAxis ("Horizontal");
+        if (moveHorizontal != 0) anim.SetInteger("speed", 1);
+        else anim.SetInteger("speed", 0);
 
         //Player Direction
         if (moveHorizontal < 0.0f && facingRight) FlipPlayer();
@@ -66,6 +72,7 @@ public class Player : MonoBehaviour {
 	void Jump(){
 		if (Input.GetButtonDown ("Jump") && jumpB == true) {
             rb.velocity = new Vector2(rb.velocity.x, jumpM);
+            anim.SetInteger("jump", 1);
 		}
         
 	}
@@ -74,6 +81,7 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = true;
+            anim.SetInteger("jump", -1);
         }
 		//Wenn der Gegner berührt wird, dann verliert ein Leben
 		if (coll.gameObject.tag == "Enemy" && vulnerable) {
@@ -99,6 +107,13 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSecondsRealtime (invulnerableTime);
 		vulnerable = true;
 	}
+
+    IEnumerator land()
+    {
+        anim.SetInteger("jump", -1);
+        yield return new WaitForSecondsRealtime(0.5f);
+        anim.SetInteger("jump", 0);
+    }
 
     private void FlipPlayer()
     {
