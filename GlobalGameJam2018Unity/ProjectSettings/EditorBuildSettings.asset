@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/menu.unity
     guid: f14e4d22e457e324c99c979248e994d5
   - enabled: 1
-    path: Assets/level02-tanja.unity
-    guid: 6e0fe870228526b4982f8ac4acb229d1
+    path: Assets/finalLevel.unity
+    guid: b94dcdb811ff0d644871083c826c3ed1

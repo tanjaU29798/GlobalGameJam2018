@@ -10,12 +10,9 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rb; //Rigidbody des Spielers
 	private float moveHorizontal; //Bewegung Horizontal
 	private bool jumpB = false; //Ist ein Sprung moeglich?
+    private bool living = true;
     public bool facingRight = true; //
 
-	[SerializeField] private int lives = 3; //Leben des Spielers
-
-	public float restartDelay = 3f; //Zeit bis Game Restartet wird
-	float restartTimer; //Zeitzähler bis Level neu startet
 
 	private bool won=false; //Ziel erreicht
 
@@ -29,24 +26,18 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (lives > 0) {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+		if (living) {
 			Move ();
 			Jump ();
             Fall();
-			if (won) {
-				print ("Won");
-				restartTimer += Time.deltaTime;
-				if (restartTimer >= restartDelay) {
-					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-				}
-			}
 		// Wenn der Spieler kein Leben mehr hat, dann wird das Spiel kurz angehalten und startet mit dem gleichen Level erneut
 		} else {
 			print ("Gameover");
-			restartTimer += Time.deltaTime;
-			if (restartTimer >= restartDelay) {
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			}
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
 
@@ -83,7 +74,7 @@ public class Player : MonoBehaviour {
         if(coll.gameObject.tag == "Deathzone")
         {
             print("deathzone");
-            lives--;
+            living=false;
         }
 		// Wenn das Ziel berührt wird, dann wird "won" auf true gesetzt
 		if (coll.gameObject.tag == "Finish") {
@@ -117,7 +108,7 @@ public class Player : MonoBehaviour {
     {
         if (gameObject.transform.position.y < -2)
         {
-            lives = 0;
+            living=false;
         }
     }
 

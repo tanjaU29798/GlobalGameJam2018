@@ -27,7 +27,7 @@ public class clockpointer : MonoBehaviour
     {
         if (move)
         {
-            transform.Rotate(Vector3.back * 0.5f);
+            transform.Rotate(Vector3.back * 0.2f);
             print("Won");
         }
         if (won)
@@ -35,7 +35,7 @@ public class clockpointer : MonoBehaviour
             restartTimer += Time.deltaTime;
             if (restartTimer >= restartDelay)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
             }
         }
     }
