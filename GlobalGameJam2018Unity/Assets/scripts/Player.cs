@@ -82,6 +82,11 @@ public class Player : MonoBehaviour {
 			jumpB = true;
             anim.SetInteger("jump", -1);
         }
+        if(coll.gameObject.tag == "Deathzone")
+        {
+            print("deathzne");
+            lives--;
+        }
 		//Wenn der Gegner berührt wird, dann verliert ein Leben
 		if (coll.gameObject.tag == "Enemy" && vulnerable) {
 			lives--;

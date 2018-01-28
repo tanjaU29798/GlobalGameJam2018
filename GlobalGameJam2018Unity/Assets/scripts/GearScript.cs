@@ -5,10 +5,12 @@ using UnityEngine;
 public class GearScript : MonoBehaviour {
 
     public Gearwheel[] gear;
+    public DeathZone[] death;
 
 	// Use this for initialization
 	void Start () {
         gear = FindObjectsOfType<Gearwheel>();
+        death = FindObjectsOfType<DeathZone>();
     }
 	
 	// Update is called once per frame
@@ -47,6 +49,29 @@ public class GearScript : MonoBehaviour {
             }
             g.Activation();
             g.childrenActivation();
+        }
+        foreach(DeathZone d in death)
+        {
+            if (d.GetVL() == key && d.GetActiveable())
+            {
+                bool gm = d.GetActive();
+                d.SetActive(!gm);
+            }
+           /* else if (d.GetVL() == key && !d.GetActiveable())
+            {
+                bool gm = d.GetMove();
+                d.SetMove(!gm);
+            }*/
+            else if (d.GetActiveable())
+            {
+                d.SetActive(false);
+                //d.SetMove(false);
+            }
+            else if (d.GetVL() != key && d.GetVL() != "" && !d.GetActiveable())
+            {
+               // d.SetMove(false);
+            }
+            d.Activation();
         }
     }
 }
