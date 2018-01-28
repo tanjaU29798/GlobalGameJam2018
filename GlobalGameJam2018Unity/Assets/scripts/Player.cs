@@ -11,8 +11,6 @@ public class Player : MonoBehaviour {
 	private float moveHorizontal; //Bewegung Horizontal
 	private bool jumpB = false; //Ist ein Sprung moeglich?
     public bool facingRight = true; //
-	private bool vulnerable = true; //Ist der Spieler verletzbar?
-	[SerializeField] private float invulnerableTime = 0.5f; //Zeit in der der Spieler unverwundbar ist 
 
 	[SerializeField] private int lives = 3; //Leben des Spielers
 
@@ -84,15 +82,9 @@ public class Player : MonoBehaviour {
         }
         if(coll.gameObject.tag == "Deathzone")
         {
-            print("deathzne");
+            print("deathzone");
             lives--;
         }
-		//Wenn der Gegner berührt wird, dann verliert ein Leben
-		if (coll.gameObject.tag == "Enemy" && vulnerable) {
-			lives--;
-			vulnerable = false;
-			StartCoroutine(ResetVulnerable());
-		}
 		// Wenn das Ziel berührt wird, dann wird "won" auf true gesetzt
 		if (coll.gameObject.tag == "Finish") {
 			won = true;
@@ -104,12 +96,6 @@ public class Player : MonoBehaviour {
 		if (coll.gameObject.tag == "Ground") {
 			jumpB = false;
         }
-	}
-
-    //Nach Zeitablauf ist der Spieler wieder verwundbar
-	IEnumerator ResetVulnerable(){
-		yield return new WaitForSecondsRealtime (invulnerableTime);
-		vulnerable = true;
 	}
 
     IEnumerator land()

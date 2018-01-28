@@ -70,8 +70,6 @@ public class Gearwheel : MonoBehaviour
         {
             if(child.GetComponent<Renderer>() != null)
                 child.GetComponent<Renderer>().enabled = active;
-            if(child.GetComponent<Collider2D>() != null)
-                child.GetComponent<Collider2D>().enabled = active;
         }
     }
 

@@ -32,7 +32,8 @@ public class GearScript : MonoBehaviour {
             {
                 bool gm = g.GetActive();
                 g.SetActive(!gm);
-                g.SetMove(true);
+                gm = g.GetMove();
+                g.SetMove(!gm);
             }
             else if (g.GetVL() == key && !g.GetActiveable())
             {
